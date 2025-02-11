@@ -1,7 +1,10 @@
 <html>
-  <head> </head>
-  <body onLoad="init()">
-    <h1>Greenwich Hire-a-Teen</h1>
+	<head>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body onLoad="init()">
+	<script src="people.js"></script>
+	<h1>Greenwich Hire-a-Teen</h1>
 
     <table id="main_table">
       <tr>
@@ -11,12 +14,20 @@
       </tr>
       <tr>
         <td>
-          <button>Babysitting</button>
-          <button>Tutoring</button>
-          <button>Yardwork</button>
-          <button>Sports Skills</button>
-          <button>Snow Shoveling</button>
-        </td>
+			<h2>Job Categories:</h2>
+			<button id="makeProfile" onclick="makeProfile()">Make a Profile</button>
+			<button onclick="jobs()" class="categories">Babysitting</button>
+			<button onclick="jobs()" class="categories">Tutoring</button>
+			<button onclick="jobs()" class="categories">Sports training</button>
+			<button onclick="jobs()" class="categories">Yard work</button>
+			<button onclick="jobs()" class="categories">Music lessons</button>
+			<button onclick="jobs()" class="categories">Art lessons</button>
+			<button onclick="jobs()" class="categories">Power washing</button>
+			<button onclick="jobs()" class="categories">Car Detailing</button>
+			<button onclick="jobs()" class="categories">Dog walking/Pet sitting</button>
+			<button onclick="jobs()" class="categories">Photography</button>
+			<button onclick="jobs()" class="categories">Chores</button>
+		</td>
       </tr>
       <tr>
         <td>
