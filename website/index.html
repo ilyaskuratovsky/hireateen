@@ -1,10 +1,10 @@
 <html>
-	<head>
-		<link rel="stylesheet" href="styles.css">
-	</head>
-	<body onLoad="init()">
-	<script src="people.js"></script>
-	<h1>Greenwich Hire-a-Teen</h1>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body onLoad="init()">
+    <script src="people.js"></script>
+    <h1>Greenwich Hire-a-Teen</h1>
 
     <table id="main_table">
       <tr>
@@ -14,20 +14,83 @@
       </tr>
       <tr>
         <td>
-			<h2>Job Categories:</h2>
-			<button id="makeProfile" onclick="makeProfile()">Make a Profile</button>
-			<button onclick="jobs()" class="categories">Babysitting</button>
-			<button onclick="jobs()" class="categories">Tutoring</button>
-			<button onclick="jobs()" class="categories">Sports training</button>
-			<button onclick="jobs()" class="categories">Yard work</button>
-			<button onclick="jobs()" class="categories">Music lessons</button>
-			<button onclick="jobs()" class="categories">Art lessons</button>
-			<button onclick="jobs()" class="categories">Power washing</button>
-			<button onclick="jobs()" class="categories">Car Detailing</button>
-			<button onclick="jobs()" class="categories">Dog walking/Pet sitting</button>
-			<button onclick="jobs()" class="categories">Photography</button>
-			<button onclick="jobs()" class="categories">Chores</button>
-		</td>
+          <h2>Job Categories:</h2>
+          <button class="filter_button" onClick="setFilter(null)">All</button>
+          <button class="filter_button" onClick="setFilter('Babysitting')">
+            Babysitting
+          </button>
+          <button
+            class="filter_button"
+            onclick="setFilter('Tutoring')"
+            class="categories"
+          >
+            Tutoring
+          </button>
+          <button
+            class="filter_button"
+            onclick="setFilter('Sports training')"
+            class="categories"
+          >
+            Sports training
+          </button>
+          <button
+            class="filter_button"
+            onclick="setFilter('Yard work')"
+            class="categories"
+          >
+            Yard work
+          </button>
+          <button
+            class="filter_button"
+            onclick="setFilter('Music lessons')"
+            class="categories"
+          >
+            Music lessons
+          </button>
+          <button
+            class="filter_button"
+            onclick="setFilter('Art lessons')"
+            class="categories"
+          >
+            Art lessons
+          </button>
+          <button
+            class="filter_button"
+            onclick="setFilter('Power washing')"
+            class="categories"
+          >
+            Power washing
+          </button>
+          <button
+            class="filter_button"
+            onclick="setFilter('Car Detailing')"
+            class="categories"
+          >
+            Car Detailing
+          </button>
+          <button
+            class="filter_button"
+            onclick="setFilter('Dog walking/Pet sitting')"
+            class="categories"
+            id=""
+          >
+            Dog walking/Pet sitting
+          </button>
+          <button
+            class="filter_button"
+            onclick="setFilter('Photography')"
+            class="categories"
+          >
+            Photography
+          </button>
+          <button
+            class="filter_button"
+            onclick="setFilter('Chores')"
+            class="categories"
+          >
+            Chores
+          </button>
+        </td>
       </tr>
       <tr>
         <td>
@@ -37,74 +100,6 @@
       <tr></tr>
     </table>
     <script>
-      const PROFILES = [
-        {
-          name: "Sam Skuratovsky",
-          photo: null,
-          quick_info: "Greenwich High School - 9th Grade",
-          about_me:
-            "This is some information about me.  I am really good at Math so I can tutor kids.  I am also on the 9th grade freshman basketball team and I've taught kids basketball.",
-          available_for:
-            "Tutoring: Math, Spanish<br/>Sports: Basketball, Football",
-          contact: "Text me at 203-969-4261",
-		  categories:["Sports Training", "Yard work"]
-        },
-        {
-          name: "Allison Skuratovsky",
-          photo: null,
-          quick_info: "Greenwich High School - 9th Grade",
-          about_me:
-            "This is some information about me.  I am really good at Math so I can tutor kids.  I am also on the 9th grade freshman basketball team and I've taught kids basketball.",
-          available_for:
-            "Tutoring: Math, Spanish<br/>Sports: Basketball, Football",
-          contact: "Text me at 203-969-4261",
-		  categories:["Chores", "Babysitting"]
-        },
-        {
-          name: "Kaitlyn Skuratovsky",
-          quick_info: "Greenwich High School - 9th Grade",
-          photo: null,
-          about_me:
-            "This is some information about me.  I am really good at Math so I can tutor kids.  I am also on the 9th grade freshman basketball team and I've taught kids basketball.",
-          available_for:
-            "Tutoring: Math, Spanish<br/>Sports: Basketball, Football",
-          contact: "Text me at 203-969-4261",
-		  categories:[""]
-        },
-        {
-          name: "Nate Pardo",
-          quick_info: "Greenwich High School - 9th Grade",
-          photo: null,
-          about_me:
-            "This is some information about me.  I am really good at Math so I can tutor kids.  I am also on the 9th grade freshman basketball team and I've taught kids basketball.",
-          available_for:
-            "Tutoring: Math, Spanish<br/>Sports: Basketball, Football",
-          contact: "Text me at 203-969-4261",
-        },
-        {
-          name: "Liam Wilson",
-          quick_info: "Greenwich High School - 9th Grade",
-          photo: null,
-          about_me:
-          "Hi, my name is Liam Wilson. I'm a responsible and hardworking teen looking for part-time work in the area. I'm available to help with yard work, lawn mowing, leaf raking, and other outdoor tasks. I'm reliable, easy to work with and always do my best to get the job done right.",
-          available_for:
-          "Yard work, lawn mowing, leaf raking, weeding",
-          contact:
-          "Contact me at 203-724-7348 or liam.wils79@gmail.com"
-        }
-        ,{
-          name: "Liam Wilson",
-          quick_info: "Greenwich High School - 9th Grade",
-          photo: null,
-          about_me:
-          "",
-          available_for:
-          "",
-          contact:
-          ""
-        }
-      ];
-
       function init() {
         const table = document.getElementById("profiles");
         for (profile of PROFILES) {
@@ -141,6 +136,79 @@
         `;
           table.appendChild(row);
         }
+        filter();
+      }
+      let FILTER = null;
+      function filter() {
+        const buttons = document.getElementsByClassName("filter_button");
+        for (button of buttons) {
+          console.log("button: " + button.textContent.trim());
+          if (button.textContent.trim() === FILTER) {
+            button.style.backgroundColor = "yellow";
+          } else if (button.textContent === "All" && FILTER == null) {
+            button.style.backgroundColor = "yellow";
+          } else {
+            button.style.backgroundColor = null;
+          }
+        }
+
+        console.log("filter() called: " + FILTER);
+        const table = document.getElementById("profiles");
+        table.innerHTML = "";
+        for (profile of PROFILES) {
+          if (FILTER != null && !(profile.categories ?? []).includes(FILTER)) {
+            continue;
+          }
+          const row = document.createElement("tr");
+          row.style.backgroundColor = "silver";
+          row.innerHTML = `
+            <td height="100" width="100" style="border:1px solid black; vertical-align:top;align:center; padding-top:12px">
+              [Picture Here]<br/>
+              ${profile.quick_info}
+            </td>
+            <td style="vertical-align:top; padding:10px">
+              <h2>${profile.name}</h2>
+              <table border="0">
+                <tr>
+                  <td>
+                  <b>About Me</b><br/>
+                  ${profile.about_me}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                  <b>Available For</b><br/>
+                  ${profile.available_for}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                  <b>Contact Information</b><br/>
+                  ${profile.contact}
+                  </td>
+                </tr>
+              </table>
+            </td>
+        `;
+          table.appendChild(row);
+        }
+      }
+      function setFilter(f) {
+        console.log(
+          "setFilter: " +
+            f +
+            " FILTER: " +
+            FILTER +
+            ", f === FILTER: " +
+            (f === FILTER ? "true" : "false"),
+        );
+        if (f != null && f === FILTER) {
+          FILTER = null;
+        } else {
+          FILTER = f;
+        }
+        filter();
+        console.log("FILTER: " + FILTER);
       }
     </script>
   </body>
